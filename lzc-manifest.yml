@@ -1,0 +1,26 @@
+application:
+  subdomain: stash-ai
+  background_task: true
+  multi_instance: false
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://stash-ai:5173/
+
+services:
+  stash-ai:
+    # upstream: savewithstash/stash:1.0.1 (docker.io)
+    image: docker.1ms.run/savewithstash/stash:1.0.1
+    binds:
+      # 笔记/上传 + 模型权重（首启后台下载约 1.3GB）
+      - /lzcapp/var/stash-ai/data:/app/data
+      - /lzcapp/var/stash-ai/models:/app/models
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - node -e "fetch('http://127.0.0.1:5173/api/status').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s

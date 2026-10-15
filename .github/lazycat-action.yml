@@ -1,0 +1,39 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: dist/stash-ai.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: stash-ai
+
+build:
+  run_buildscript: false
+
+images:
+  - id: stash-ai
+    target: service
+    service: stash-ai
+    source: docker.io/savewithstash/stash
+    channel: stable
+    sort: semver
+    tag_regex: '^v?\d+\.\d+\.\d+$'
+    delivery:
+      mode: mirror
+      require_digest_match: true
+
+stores:
+  official:
+    enabled: false
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: Stash AI
+    summary: "自托管 AI 笔记收藏（本地模型，数据不出机器）"

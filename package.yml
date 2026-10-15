@@ -1,0 +1,15 @@
+package: community.lazycat.app.stash-ai
+version: 1.0.1
+name: Stash AI
+description: "Self-hosted AI notes: hoard everything, find anything (on-device AI)"
+min_os_version: 1.5.0
+author: savewithstash
+license: AGPL-3.0
+homepage: https://github.com/savewithstash/stash
+locales:
+  zh:
+    name: "Stash AI"
+    description: "自托管 AI 笔记收藏：随手保存链接/图片/代码/提醒，本地模型自动打标、总结、检索与引用式问答，数据不出机器"
+  en:
+    name: "Stash AI"
+    description: "Hoard everything. Find Anything. Self-hosted AI notes with on-device models via QVAC"
