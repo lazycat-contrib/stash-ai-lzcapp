@@ -7,10 +7,9 @@ application:
   upstreams:
     - location: /
       backend: http://stash-ai:5173/
-
 services:
   stash-ai:
-    # upstream: savewithstash/stash:1.0.1 (docker.io)
+    # upstream: docker.io/savewithstash/stash:1.0.1
     image: docker.1ms.run/savewithstash/stash:1.0.1
     binds:
       # 笔记/上传 + 模型权重（首启后台下载约 1.3GB）
